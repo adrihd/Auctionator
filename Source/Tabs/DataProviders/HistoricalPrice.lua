@@ -71,7 +71,7 @@ function AuctionatorHistoricalPriceProviderMixin:GetColumnHideStates()
 end
 
 function AuctionatorHistoricalPriceProviderMixin:ReceiveEvent(event, itemInfo)
-  if event == Auctionator.Selling.Events.BagItemClicked then
+  if self:IsVisible() and event == Auctionator.Selling.Events.BagItemClicked then
     self:SetItem(itemInfo.itemKey)
   end
 end

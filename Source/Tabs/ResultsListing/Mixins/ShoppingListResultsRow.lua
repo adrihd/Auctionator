@@ -24,7 +24,7 @@ local function ModifyBuyBackButton()
   AuctionHouseFrame.ItemBuyFrame.BackButton:SetScript("OnShow", OnShow)
 end
 
-function AuctionatorShoppingListResultsRowMixin:OnClick(...)
+function AuctionatorShoppingListResultsRowMixin:OnClick(button, ...)
   Auctionator.Debug.Message("AuctionatorShoppingListResultsRowMixin:OnClick()")
 
   -- Modify the buy screen back button so that it returns to the "Shopping" tab
@@ -37,7 +37,11 @@ function AuctionatorShoppingListResultsRowMixin:OnClick(...)
 
   if IsModifiedClick("DRESSUP") then
     AuctionHouseBrowseResultsFrameMixin.OnBrowseResultSelected({}, self.rowData)
-
+  elseif button == 'RightButton' then
+    Auctionator.EventBus
+      :RegisterSource(self, "AuctionatorShoppingListResultsRowMixin hook")
+      :Fire(self, Auctionator.Selling.Events.BagItemClicked, self.rowData)
+      :UnregisterSource(self)
   else
     AuctionatorResultsRowTemplateMixin.OnClick(self, ...)
 

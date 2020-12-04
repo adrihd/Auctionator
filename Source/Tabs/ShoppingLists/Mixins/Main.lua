@@ -21,7 +21,9 @@ function AuctionatorShoppingListTabMixin:OnLoad()
   -- Add Item button starts in the default state until a list is selected
   self.AddItem:Disable()
 
-  self.ResultsListing:Init(self.DataProvider)
+  self.SearchItemList:Init(self.DataProvider)
+
+  self.HistoricalPriceListingForShop:Init(self.HistoricalPriceProvider)
 end
 
 function AuctionatorShoppingListTabMixin:SetUpEvents()

@@ -13,9 +13,10 @@
     </Scripts>
 
     <Anchors>
-      <Anchor point="TOP" relativeKey="$parent.CategoriesList" relativePoint="TOP" y="-30"/>
-      <Anchor point="LEFT" x="4"/>
-      <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-4" y="27" />
+      <Anchor point="LEFT" x="4" y="0"/>
+      <Anchor point="RIGHT" x="-4" y="0" />
+      <Anchor point="BOTTOM" y="27" />
+      <Anchor point="TOPLEFT" relativeKey="$parent.CategoriesList" relativePoint="TOPLEFT" y="-30" />
     </Anchors>
 
     <Frames>
@@ -168,20 +169,48 @@
         </Scripts>
       </Button>
 
-      <Frame inherits="AuctionatorResultsListingTemplate">
+    <Frame parentKey="SearchItemList" inherits="AuctionatorResultsListingTemplate">
+      <Anchors>
+        <Anchor point="TOPLEFT" relativeKey="$parent.ScrollList" relativePoint="TOPRIGHT" y="27" />
+        <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="-20" y="200"/>
+      </Anchors>
+    </Frame>
+
+	  <Frame parentKey="SearchItemListInset" inherits="AuctionatorInsetDarkTemplate">
         <Anchors>
-          <Anchor point="TOPLEFT" relativeKey="$parent.ScrollList" relativePoint="TOPRIGHT" y="27" />
-          <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="-20"/>
+          <Anchor point="TOPLEFT" relativeKey="$parent.SearchItemList" relativePoint="TOPLEFT" x="-5" y="-24"/>
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent.SearchItemList" relativePoint="BOTTOMRIGHT"/>
         </Anchors>
       </Frame>
-
       <Frame parentKey="ShoppingResultsInset" inherits="AuctionatorInsetTemplate">
+
         <Anchors>
           <Anchor point="TOPLEFT" relativeKey="$parent.ResultsListing" relativePoint="TOPLEFT" x="-5" y="-25"/>
           <Anchor point="BOTTOMRIGHT" relativeKey="$parent.ResultsListing" relativePoint="BOTTOMRIGHT"/>
         </Anchors>
       </Frame>
 
+	  <Frame parentKey="HistoricalPriceListingForShop" inherits="AuctionatorResultsListingTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.ScrollList" relativePoint="TOPRIGHT" y="-200" />
+          <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="-20" />
+        </Anchors>
+      </Frame>
+
+    <Frame parentKey="HistoricalPriceListingForShopInset" inherits="AuctionatorInsetDarkTemplate">
+      <Anchors>
+        <Anchor point="TOPLEFT" relativeKey="$parent.HistoricalPriceListingForShop" relativePoint="TOPLEFT" x="-5" y="-24"/>
+        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.HistoricalPriceListingForShop" relativePoint="BOTTOMRIGHT"/>
+      </Anchors>
+    </Frame>
+
+	  <Frame parentKey="HistoricalPriceProvider" mixin="AuctionatorHistoricalPriceProviderMixin">
+        <Scripts>
+          <OnLoad method="OnLoad"/>
+          <OnShow method="OnShow"/>
+          <OnUpdate method="OnUpdate"/>
+        </Scripts>
+      </Frame>
     </Frames>
   </Frame>
 </Ui>
